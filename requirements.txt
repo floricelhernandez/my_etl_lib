@@ -1,0 +1,8 @@
+boto3
+pandas
+pyarrow
+pytest
+setuptools
+black
+isort
+
