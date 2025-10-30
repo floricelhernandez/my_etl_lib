@@ -9,7 +9,6 @@ from etl_base.mixins.path_resolver_mixin import PathResolverMixin
 from etls.clientes_etl import ClientesETL
 
 
-
 def test_clientes_etl_run(tmp_path):
     # Creamos el CSV de prueba
     csv_path = tmp_path / "bronze/clientes.csv"
