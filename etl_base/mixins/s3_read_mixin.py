@@ -1,3 +1,4 @@
+import json
 import os
 
 import awswrangler as wr
@@ -37,3 +38,18 @@ class S3ReadMixin:
             if not os.path.exists(path):
                 raise FileNotFoundError(f"Archivo no encontrado: {path}")
             return pd.read_csv(path, **kwargs)
+    def s3_read_config_file(self, file_path: str, **kwargs) -> dict:
+        """
+        Lee un archivo JSON desde S3 usando awswrangler.
+        """
+        
+
+        if file_path.startswith("s3://"):
+            s3 = self.session.client("s3")
+            obj = s3.get_object(Bucket=file_path.split("/")[2], Key="/".join(file_path.split("/")[3:]))
+            return json.loads(obj['Body'].read().decode('utf-8'))
+        else:
+
+            with open(file_path, "r") as f:
+                config = json.load(f)
+            return config

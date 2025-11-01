@@ -20,7 +20,7 @@ class ClientesETL(BaseETL, S3ReadMixin, S3WriteMixin, AwsSessionMixin):
 
 
 if __name__ == "__main__":
-    args = ["env", "storage", "storage_source"]
+    args = ["env", "storage", "storage_source", "config_path"]
 
     etl = ClientesETL(args)
     etl.run()
