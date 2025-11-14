@@ -12,7 +12,7 @@ class PathResolverMixin:
         - Local: ./data/relative_path
         - Glue: s3://my-bucket-name/relative_path
         """
-        if not self.env == "local":
+        if self.storage == "s3":
             return f"s3://{self.storage_source}/{relative_path}"
         else:
             return os.path.join(self.storage_source, relative_path)

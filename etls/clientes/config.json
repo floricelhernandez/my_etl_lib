@@ -1,0 +1,14 @@
+{
+    "s3_inputs":{
+        "clientes":{
+            "path": "s3://my-bucket/data/clientes/clientes.json",
+            "type": "json",
+            "output_table": "clientes_raw"
+        },
+        "productos":{
+            "path": "s3://my-bucket/data/productos/productos.json",
+            "type": "json",
+            "output_table": "productos_raw"
+        }
+    }
+}

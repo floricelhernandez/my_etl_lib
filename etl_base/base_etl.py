@@ -1,7 +1,9 @@
 import argparse
 from abc import ABC, abstractmethod
+import json
 
 from .mixins.path_resolver_mixin import PathResolverMixin
+from .mixins.s3_read_mixin import S3ReadMixin
 
 
 class BaseETL(PathResolverMixin, ABC):
@@ -24,6 +26,10 @@ class BaseETL(PathResolverMixin, ABC):
         # Seteamos atributos dinámicamente
         for name, value in vars(args).items():
             setattr(self, name, value)
+        self.config= self.s3_read_config_file(self.config_path)
+    
+ 
+        
 
     @abstractmethod
     def extract(self):
